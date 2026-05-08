@@ -51,8 +51,13 @@ Or install to a specific project:
 | Command | Description |
 | --- | --- |
 | `/codeasier:help` | Show available Codeasier commands |
-
-Add more command files under `.claude/commands/codeasier/` and they will appear under the `codeasier` namespace.
+| `/codeasier:release-prep <version>` | Prepare a PyPI release workflow |
+| `/codeasier:issue-review <issue_num>` | Analyze an issue proposal and append a GitHub comment |
+| `/codeasier:issue-resolve <issue-num>` | Resolve an issue in an isolated git worktree |
+| `/codeasier:worktree-clean` | Inspect and clean safe-to-remove git worktrees |
+| `/codeasier:pr-followup <pr-number> [focus]` | Handle PR review follow-up using the repo SOP |
+| `/codeasier:session-review <session-id>` | Analyze a Claude Code session and failures |
+| `/codeasier:docs-governance [mode] [scope]` | Audit or fix documentation structure and links |
 
 ## Repository layout
 
