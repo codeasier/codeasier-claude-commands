@@ -56,7 +56,7 @@ Or install to a specific project:
 | `/codeasier:issue-resolve <issue-num>` | Resolve an issue in an isolated git worktree |
 | `/codeasier:worktree-clean` | Inspect and clean safe-to-remove git worktrees |
 | `/codeasier:pr-followup <pr-number> [focus]` | Handle PR review follow-up using the repo SOP |
-| `/codeasier:session-review <session-id>` | Analyze a Claude Code session and failures |
+| `/codeasier:session-review <troubleshoot|summary> <session-id>` | Review a Claude Code session for troubleshooting or workflow summarization |
 | `/codeasier:docs-governance [mode] [scope]` | Audit or fix documentation structure and links |
 
 ## Repository layout

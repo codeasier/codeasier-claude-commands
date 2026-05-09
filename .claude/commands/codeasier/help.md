@@ -29,8 +29,8 @@ allowed-tools: Read
 - `/codeasier:pr-followup <pr-number> [focus]`
   - 按本仓库 SOP 处理 PR review 后续动作。
 
-- `/codeasier:session-review <session-id>`
-  - 分析 Claude Code 会话状态、失败原因、工具调用与异常点。
+- `/codeasier:session-review <troubleshoot|summary> <session-id>`
+  - 按模式审查 Claude Code 会话：`troubleshoot` 用于排障，`summary` 用于总结工作流并提炼可沉淀能力。
 
 - `/codeasier:docs-governance [mode] [scope]`
   - 进行文档结构整改、README 精简、引用校验、多语言检查与项目一致性治理。
