@@ -4,26 +4,28 @@ argument-hint: <owner/repo>
 allowed-tools: Read, Glob, Grep, Bash, WebFetch
 ---
 
-如果没有提供仓库标识，就只输出：`用法: /codeasier:issue-submit <owner/repo>`，不要执行其他操作。
+当前参数：`$ARGUMENTS`
 
-你的任务是：从远程仓库 `$1` 中识别可用的 issue 模板，让用户选择合适的模板，然后引导用户填写内容并提交 issue。
+如果没有提供仓库标识（即 `$ARGUMENTS` 为空），就只输出：`用法: /codeasier:issue-submit <owner/repo>`，不要执行其他操作。停止。不要继续后续阶段。
+
+你的任务是：从远程仓库 `$ARGUMENTS` 中识别可用的 issue 模板，让用户选择合适的模板，然后引导用户填写内容并提交 issue。
 
 ## 阶段 1：获取 issue 模板列表
 
 使用 `gh` CLI 获取目标仓库的 issue 模板：
 
 ```bash
-gh api repos/$1/contents/.github/ISSUE_TEMPLATE --jq '.[].name' 2>/dev/null
+gh api repos/$ARGUMENTS/contents/.github/ISSUE_TEMPLATE --jq '.[].name' 2>/dev/null
 ```
 
 - 如果返回空或 404，再检查是否存在 `.github/ISSUE_TEMPLATE.md` 单文件模板：
   ```bash
-  gh api repos/$1/contents/.github/ISSUE_TEMPLATE.md --jq '.download_url' 2>/dev/null
+  gh api repos/$ARGUMENTS/contents/.github/ISSUE_TEMPLATE.md --jq '.download_url' 2>/dev/null
   ```
 - 如果两者都不存在，告知用户该仓库没有 issue 模板，停止执行。
 - 同时获取模板配置文件（如有）：
   ```bash
-  gh api repos/$1/contents/.github/ISSUE_TEMPLATE/config.yml --jq '.download_url' 2>/dev/null
+  gh api repos/$ARGUMENTS/contents/.github/ISSUE_TEMPLATE/config.yml --jq '.download_url' 2>/dev/null
   ```
   如果存在 config.yml，下载并解析其中的 `blank_issues_enabled` 和 `contact_links`。
 
@@ -31,7 +33,7 @@ gh api repos/$1/contents/.github/ISSUE_TEMPLATE --jq '.[].name' 2>/dev/null
 
 1. 用 `gh api` 下载每个模板文件的原始内容：
    ```bash
-   gh api repos/$1/contents/.github/ISSUE_TEMPLATE/<filename> --jq '.download_url' | xargs curl -sL
+   gh api repos/$ARGUMENTS/contents/.github/ISSUE_TEMPLATE/<filename> --jq '.download_url' | xargs curl -sL
    ```
 
 2. 解析每个模板的 YAML front matter（`---` 之间的部分），提取：
@@ -44,7 +46,7 @@ gh api repos/$1/contents/.github/ISSUE_TEMPLATE --jq '.[].name' 2>/dev/null
 3. 向用户展示模板列表，格式如下：
 
    ```
-   仓库 $1 的可用 issue 模板：
+   仓库 $ARGUMENTS 的可用 issue 模板：
 
    1. <name> — <description>
    2. <name> — <description>
@@ -91,7 +93,7 @@ gh api repos/$1/contents/.github/ISSUE_TEMPLATE --jq '.[].name' 2>/dev/null
 只有在用户明确确认后才提交：
 
 ```bash
-gh issue create --repo $1 --title "<title>" --body "<body>" [--label "<label1>,<label2>"] [--assignee "<assignee>"]
+gh issue create --repo $ARGUMENTS --title "<title>" --body "<body>" [--label "<label1>,<label2>"] [--assignee "<assignee>"]
 ```
 
 - `--label`：仅在模板指定了 labels 时添加
