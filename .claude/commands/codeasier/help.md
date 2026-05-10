@@ -39,6 +39,10 @@ allowed-tools: Read
   - 进行文档结构整改、README 精简、引用校验、多语言检查与项目一致性治理。
   - `mode` 可选：`audit` 为审计优先，`fix` 为整改优先；默认 `audit`。
 
+- `/codeasier:gc-gh-compare <subcommand> [--repo owner/repo]`
+  - 端到端对比 gc 与 gh 某子命令的实现一致性：help/flags 对比、e2e 能力测试、输出格式对比、错误处理对比。
+  - 示例：`/codeasier:gc-gh-compare issue list --repo codeasier/test-for-gc`
+
 - `/codeasier:env-setup [extra-env ...]`
   - 检测当前开发环境（conda、python、brew 等），生成项目级 `.claude/settings.local.json` 配置，确认后写入。
   - 可选参数指定额外环境：`node`、`go`、`rust`、`java`、`ruby`、`php`，如 `/codeasier:env-setup node go`。

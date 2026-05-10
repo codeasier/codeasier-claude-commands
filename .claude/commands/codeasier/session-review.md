@@ -23,9 +23,9 @@ allowed-tools: Read, Glob, Grep, Bash
 
 ## 路由规则
 
-- 总是先读取：`_refs/session-review/shared.sop`
-- 当 `$1=troubleshoot` 时，再读取：`_refs/session-review/troubleshoot.sop`
-- 当 `$1=summary` 时，再读取：`_refs/session-review/summary.sop`
+- 总是先读取：`<command-codeasier-root>/_refs/session-review/shared.sop`
+- 当 `$1=troubleshoot` 时，再读取：`<command-codeasier-root>/_refs/session-review/troubleshoot.sop`
+- 当 `$1=summary` 时，再读取：`<command-codeasier-root>/_refs/session-review/summary.sop`
 
 读取完成后：
 - 将 `$2` 作为目标 session id
