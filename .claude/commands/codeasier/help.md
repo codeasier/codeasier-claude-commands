@@ -39,6 +39,10 @@ allowed-tools: Read
   - 进行文档结构整改、README 精简、引用校验、多语言检查与项目一致性治理。
   - `mode` 可选：`audit` 为审计优先，`fix` 为整改优先；默认 `audit`。
 
+- `/codeasier:env-setup [extra-env ...]`
+  - 检测当前开发环境（conda、python、brew 等），生成项目级 `.claude/settings.local.json` 配置，确认后写入。
+  - 可选参数指定额外环境：`node`、`go`、`rust`、`java`、`ruby`、`php`，如 `/codeasier:env-setup node go`。
+
 参数缺失时，各命令应只返回用法提示，不继续执行。
 
 除以上帮助内容外，不要附加别的解释。

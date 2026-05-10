@@ -58,6 +58,7 @@ Or install to a specific project:
 | `/codeasier:pr-followup <pr-number> [focus]` | Handle PR review follow-up using the repo SOP |
 | `/codeasier:session-review [mode] <session-id>` | Review a Claude Code session for troubleshooting (`mode=troubleshoot`) or workflow summarization (`mode=summary`) |
 | `/codeasier:docs-governance [mode] [scope]` | Audit or fix documentation structure and links |
+| `/codeasier:env-setup [extra-env ...]` | Detect dev environment (conda, python, brew + optional node/go/rust/java/ruby/php) and configure project `.claude/settings.local.json` |
 
 ## Repository layout
 
