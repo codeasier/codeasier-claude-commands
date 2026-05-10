@@ -20,6 +20,9 @@ allowed-tools: Read
 - `/codeasier:issue-review <issue_num>`
   - 分析 issue 建议是否真实存在、是否合理，并将结论追加到 issue 评论。
 
+- `/codeasier:issue-submit <owner/repo>`
+  - 识别远程仓库 issue 模板，选择合适的模板并引导填写后提交 issue。
+
 - `/codeasier:issue-resolve <issue-num>`
   - 在独立 `.worktrees` worktree 中修复指定 issue。
 
