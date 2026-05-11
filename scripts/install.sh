@@ -8,8 +8,13 @@ mkdir -p "$TARGET"
 cp -R ".claude/commands/codeasier" "$TARGET/"
 
 # Replace <command-codeasier-root> placeholder with actual install path
-find "$INSTALL_DIR" -type f \( -name '*.md' -o -name '*.sop' \) -exec \
-  sed -i "s|<command-codeasier-root>|${INSTALL_DIR}|g" {} +
+if sed --version >/dev/null 2>&1; then
+  find "$INSTALL_DIR" -type f \( -name '*.md' -o -name '*.sop' \) -exec \
+    sed -i -e "s|<command-codeasier-root>|${INSTALL_DIR}|g" {} +
+else
+  find "$INSTALL_DIR" -type f \( -name '*.md' -o -name '*.sop' \) -exec \
+    sed -i '' -e "s|<command-codeasier-root>|${INSTALL_DIR}|g" {} +
+fi
 
 echo "Installed Codeasier commands to $INSTALL_DIR"
 echo "Try: /codeasier:help"
